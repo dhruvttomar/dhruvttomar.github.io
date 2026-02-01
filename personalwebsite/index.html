@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dhruv Tomar</title>
+  <meta name="description" content="Personal website" />
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#5a5a5a;
+      --line:#e8e8e8;
+      --card:#fafafa;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --radius:16px;
+      --max: 860px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height:1.5;
+      letter-spacing: .1px;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(17,17,17,.2);
+    }
+
+    a:hover{ border-bottom-color: rgba(17,17,17,.6); }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 36px 18px 56px;
+    }
+
+    header{
+      padding-top: 8px;
+      padding-bottom: 12px;
+    }
+
+    .name{
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      margin: 0;
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .intro{
+      margin-top: 18px;
+      font-size: 16px;
+      max-width: 68ch;
+    }
+
+    .section{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    .bullets{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet{
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    .bullet .arrow{
+      font-weight: 700;
+      color: var(--muted);
+      transform: translateY(1px);
+    }
+
+    .cards{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      display: grid;
+      gap: 6px;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .card .title{
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .card .desc{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .grid2{
+      display: grid;
+      gap: 14px;
+    }
+
+    @media (min-width: 780px){
+      .grid2{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .pill{
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .scroller{
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(250px, 320px);
+      gap: 12px;
+      overflow: auto;
+      padding: 10px 6px 14px;
+      scroll-snap-type: x mandatory;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fff;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .scroller:active{ cursor: grabbing; }
+
+    .scroller::-webkit-scrollbar{ height: 10px; }
+    .scroller::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.15); border-radius: 999px; }
+
+    .shot{
+      scroll-snap-align: start;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--card);
+      display: grid;
+      grid-template-rows: 170px 1fr;
+    }
+
+    .shot .media{
+      background: linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+      display: grid;
+      place-items: center;
+      color: rgba(0,0,0,.35);
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .shot .meta{
+      padding: 12px 12px 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .shot .meta .h{
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .shot .meta .p{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    footer{
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tiny{
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+    }
+
+    .topline{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar{
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: var(--card);
+      flex: 0 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header>
+      <div class="topline">
+        <img class="avatar" src="headshot.jpg" alt="Dhruv Tomar" />
+        <h1 class="name">Dhruv Tomar</h1>
+      </div>
+      <p class="subtitle">EE + CS @ University of Michigan Ann-Arbor, Core Contributor @ Cactus</p>
+      <p class="intro">Freshman at the University of Michigan studying Electrical Engineering and Computer Science through the College of Engineering. Interested in AI hardware and Embedded systems. Feel free to reach out.</p>
+    </header>
+
+    <section class="section" aria-labelledby="done">
+      <h2 id="done">Highlights</h2>
+      <ul class="bullets">
+        <li class="bullet"><span class="arrow">-</span><span>Built custom AI assitant "Jarvis" to help automate everyday tasks</span></li>
+        <li class="bullet"><span class="arrow">-</span><span>Helped write document scripts in Python and Javascript for Tokio Marine as an Intern </span></li>
+        <li class="bullet"><span class="arrow">-</span><span>Worked as a philantropist through Humble Beginnings @ Michigan donating to homeless shelters</span></li>
+      </ul>
+    </section>
+
+    <section class="section grid2" aria-label="links">
+      <div>
+        <h2>Experience</h2>
+        <div class="cards" id="past_cards"></div>
+      </div>
+      <div>
+        <h2>Info</h2>
+        <div class="cards" id="current_cards"></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="passions">
+      <h2 id="passions">Hobbies</h2>
+      <div class="grid2" id="passion_cards"></div>
+    </section>
+
+    <footer>
+      <div class="tiny">email: <a href="mailto:you@example.com">dhruvttomar@gmail.com</a></div>
+      <div class="tiny">© <span id="year"></span>Dhruv Tomar</div>
+    </footer>
+  </main>
+
+  <script>
+    const past = [
+      { title: "Core Contributor @ Cactus (YC S25)", url: "https://www.cactuscompute.com/", desc: "Kernels and runtimes for local inference." },
+      { title: "Hardware Intern @ Kostal of North America", url: "https://www.kostal.com/de/", desc: "I2C hall sensor development" },
+      { title: "Document Script Intern @ TMHCC", url: "https://www.tmhcc.com/en-us", desc: "Document writing in Javascript and Python" }
+    ]
+
+    const current = [
+      { title: "School", url: "https://www.engin.umich.edu/", desc: "University of Michigan College of Engineering" },
+      { title: "Community", url: "https://humblebeginningsofmi.org/", desc: "Communities through volunteering and philantropy" },
+      { title: "Github", url: "https://github.com/dhruvttomar", desc: "Some of the projects I've worked on" }
+    ]
+
+    const passions = [
+      { title: "Music", desc: "A$AP Rocky, Yves Tumor, The Weeknd, Nujabes" },
+      { title: "Movies", desc: "Star Wars, Cars, The Martian, Ford vs. Ferrari" },
+      { title: "Astronomy", desc: "Exploring the night sky" },
+      { title: "Collecting", desc: "Vinyls, Colognes, Gemstones, HotWheels " }
+    ]
+
+    const shots = [
+      { label: "First Demo Day", text: "Showing off a project." },
+      { label: "Trip", text: "A small note from a place you liked." },
+      { label: "Dinner", text: "A builder night with friends." },
+      { label: "New City", text: "Got a memorable meal." },
+      { label: "Game Day", text: "A win you will remember." },
+      { label: "Summer", text: "A season of learning." }
+    ]
+
+    const el_past = document.getElementById("past_cards")
+    const el_current = document.getElementById("current_cards")
+    const el_passions = document.getElementById("passion_cards")
+    const el_scroller = document.getElementById("scroller")
+    if(el_scroller){
+      el_scroller.innerHTML = shots.map((s, i) => `
+        <article class="shot" aria-label="snapshot ${i + 1}">
+          <div class="media">IMAGE</div>
+          <div class="meta">
+            <div class="h">${s.label}</div>
+            <div class="p">${s.text}</div>
+          </div>
+        </article>
+      `).join("")
+
+      let down = false
+      let start_x = 0
+      let start_left = 0
+
+      el_scroller.addEventListener("mousedown", (e) => {
+        down = true
+        start_x = e.pageX
+        start_left = el_scroller.scrollLeft
+      })
+
+      window.addEventListener("mouseup", () => { down = false })
+
+      el_scroller.addEventListener("mouseleave", () => { down = false })
+
+      el_scroller.addEventListener("mousemove", (e) => {
+        if(!down) return
+        e.preventDefault()
+        const dx = e.pageX - start_x
+        el_scroller.scrollLeft = start_left - dx
+      })
+
+      el_scroller.tabIndex = 0
+      el_scroller.addEventListener("keydown", (e) => {
+        if(e.key === "ArrowRight") el_scroller.scrollLeft += 80
+        if(e.key === "ArrowLeft") el_scroller.scrollLeft -= 80
+      })
+    }
+
+    function cardHTML(item){
+      return `
+        <a class="card" href="${item.url}" target="_blank" rel="noreferrer">
+          <div class="title">${item.title}</div>
+          <div class="desc">${item.desc}</div>
+        </a>
+      `
+    }
+
+    el_past.innerHTML = past.map(cardHTML).join("")
+    el_current.innerHTML = current.map(cardHTML).join("")
+
+    el_passions.innerHTML = passions.map(p => `
+      <div class="card">
+        <div class="title">${p.title}</div>
+        <div class="desc">${p.desc}</div>
+      </div>
+    `).join("")
+
+    el_scroller.innerHTML = shots.map((s, i) => `
+      <article class="shot" aria-label="snapshot ${i + 1}">
+        <div class="media">IMAGE</div>
+        <div class="meta">
+          <div class="h">${s.label}</div>
+          <div class="p">${s.text}</div>
+        </div>
+      </article>
+    `).join("")
+
+    document.getElementById("year").textContent = new Date().getFullYear()
+
+    // Drag to scroll
+    let down = false
+    let start_x = 0
+    let start_left = 0
+
+    el_scroller.addEventListener("mousedown", (e) => {
+      down = true
+      start_x = e.pageX
+      start_left = el_scroller.scrollLeft
+    })
+
+    window.addEventListener("mouseup", () => { down = false })
+
+    el_scroller.addEventListener("mouseleave", () => { down = false })
+
+    el_scroller.addEventListener("mousemove", (e) => {
+      if(!down) return
+      e.preventDefault()
+      const dx = e.pageX - start_x
+      el_scroller.scrollLeft = start_left - dx
+    })
+
+    // Keyboard support
+    el_scroller.tabIndex = 0
+    el_scroller.addEventListener("keydown", (e) => {
+      if(e.key === "ArrowRight") el_scroller.scrollLeft += 80
+      if(e.key === "ArrowLeft") el_scroller.scrollLeft -= 80
+    })
+  </script>
+</body>
+</html>
